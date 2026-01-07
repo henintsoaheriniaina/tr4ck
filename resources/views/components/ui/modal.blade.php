@@ -1,6 +1,5 @@
 @props(['name', 'title' => null])
-
-<div x-data="{ show: false }" x-show="show"
+<div x-data="{ show: false }" x-show="show" x-cloak
     x-on:open-modal.window="if ($event.detail === '{{ $name }}') show = true"
     x-on:close-modal.window="show = false" x-on:keydown.escape.window="show = false" style="display: none;"
     class="relative z-50">

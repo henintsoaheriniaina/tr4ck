@@ -7,26 +7,28 @@
             Nouveau
         </x-ui.button>
     </div>
+    @push('modals')
+        <x-ui.modal name="create-wallet" title="Nouveau Portefeuille">
+            <form action="{{ route('wallets.store') }}" method="POST" class="space-y-6">
+                @csrf
+                <x-ui.input label="Nom du portefeuille" name="name" placeholder="ex: Compte Mvola" required />
+                <x-ui.input-number label="Solde initial (Optionnel)" name="balance" step="0.01" placeholder="0.00" />
 
-    <x-ui.modal name="create-wallet" title="Nouveau Portefeuille">
-        <form action="{{ route('wallets.store') }}" method="POST" class="space-y-6">
-            @csrf
-            <x-ui.input label="Nom du portefeuille" name="name" placeholder="ex: Compte Mvola" required />
-            <x-ui.input-number label="Solde initial (Optionnel)" name="balance" step="0.01" placeholder="0.00" />
+                <div class="mt-8 flex justify-end gap-3">
+                    <x-ui.button type="button" variant="ghost" @click="show = false">
+                        Annuler
+                    </x-ui.button>
+                    <x-ui.button type="submit" variant="primary">
+                        Créer
+                    </x-ui.button>
+                </div>
+            </form>
+        </x-ui.modal>
+    @endpush
 
-            <div class="mt-8 flex justify-end gap-3">
-                <x-ui.button type="button" variant="ghost" @click="show = false">
-                    Annuler
-                </x-ui.button>
-                <x-ui.button type="submit" variant="primary">
-                    Créer
-                </x-ui.button>
-            </div>
-        </form>
-    </x-ui.modal>
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
         @forelse ($wallets as $wallet)
-            <x-wallets.wallet-card :wallet="$wallet" :statuses="$statuses" />
+            <x-wallets.wallet-card :wallet="$wallet" />
         @empty
             <div
                 class="col-span-full flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-white/5 p-12 text-center">

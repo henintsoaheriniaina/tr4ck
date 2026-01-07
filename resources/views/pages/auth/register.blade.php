@@ -66,14 +66,15 @@
 
         <div class="space-y-4">
             <x-ui.input label="Nom complet" name="name" id="name" type="text" placeholder="Alex Johnson"
-                autofocus />
-            <x-ui.input label="Email" name="email" id="email" type="email" placeholder="alex@example.com" />
+                required autofocus />
+            <x-ui.input label="Email" name="email" id="email" type="email" placeholder="alex@example.com"
+                required />
 
             <div class="grid grid-cols-2 gap-4">
-                <x-ui.input label="Mot de passe" type="password" id="password" name="password"
-                    placeholder="••••••••" />
+                <x-ui.input label="Mot de passe" type="password" id="password" name="password" placeholder="••••••••"
+                    required />
                 <x-ui.input label="Confirmation" type="password" id="password_confirmation" name="password_confirmation"
-                    placeholder="••••••••" />
+                    placeholder="••••••••" required />
             </div>
         </div>
 

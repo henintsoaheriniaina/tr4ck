@@ -11,8 +11,9 @@
         @csrf
         <div class="space-y-4">
             <x-ui.input label="Email" name="email" id="email" type="email" placeholder="alex@example.com"
-                autofocus />
-            <x-ui.input label="Mot de passe" type="password" id="password" name="password" placeholder="••••••••" />
+                autofocus required />
+            <x-ui.input label="Mot de passe" type="password" id="password" name="password" placeholder="••••••••"
+                required />
         </div>
 
         <div class="flex items-center justify-between">

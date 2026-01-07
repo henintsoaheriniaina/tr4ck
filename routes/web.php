@@ -21,6 +21,4 @@ Route::middleware('auth')->group(function () {
     })->name('index');
     Route::resource('wallets', WalletController::class)->except(['create', 'edit']);
 
-    Route::patch('/wallets/{wallet}/status', [WalletController::class, 'updateStatus'])->name('wallets.update-status');
-
 });

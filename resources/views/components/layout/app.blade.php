@@ -54,7 +54,7 @@
                 </div>
             </div>
         </aside>
-        <div x-show="mobileMenu" @click="mobileMenu = false"
+        <div x-show="mobileMenu" @click="mobileMenu = false" x-cloak
             class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"></div>
 
         <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
@@ -82,6 +82,7 @@
     </div>
 
     <x-ui.toaster />
+    @stack('modals')
     <script>
         document.addEventListener('alpine:initialized', () => {
             feather.replace();
