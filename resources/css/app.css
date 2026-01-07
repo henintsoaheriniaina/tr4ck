@@ -34,12 +34,13 @@
 }
 
 @utility glass-card {
-    background-color: var(--color-surface);
     border: 1px solid var(--color-border-glass);
     backdrop-filter: blur(12px);
     border-radius: 1.5rem;
 }
-
+@utility dropdown-content {
+    backdrop-filter: blur(20px);
+}
 @utility text-glow {
     text-shadow: 0 0 15px;
 }
@@ -49,13 +50,13 @@
 
 @layer base {
     h1 {
-        @apply text-4xl font-bold tracking-tight text-text-main mb-6;
+        @apply text-4xl font-bold tracking-tight text-text-main;
     }
     h2 {
-        @apply text-2xl font-semibold tracking-tight text-text-main mb-4;
+        @apply text-2xl font-semibold tracking-tight text-text-main;
     }
     h3 {
-        @apply text-lg font-medium text-text-main mb-2;
+        @apply text-lg font-medium text-text-main;
     }
     p {
         @apply text-text-muted leading-relaxed;
@@ -97,7 +98,6 @@
         @apply border-error/50 bg-error/5 focus:border-error focus:ring-error/20;
     }
 
-    /* Animation de vibration pour l'erreur */
     .shake {
         animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     }
@@ -123,7 +123,7 @@
     }
 
     .card {
-        @apply glass-card p-6 bg-primary/10 border-primary/20 relative overflow-hidden;
+        @apply glass-card p-6 bg-primary/5 hover:border-primary/30 relative z-0;
     }
 
     .card::before {
@@ -173,17 +173,14 @@
         @apply border-primary/50 bg-surface-light;
     }
 
-    /* Lien Primary (Néon turquoise) */
     .link-primary {
         @apply link text-primary hover:brightness-125 hover:text-glow;
     }
 
-    /* Lien Underline (Élégant avec décalage) */
     .link-underline {
         @apply link underline underline-offset-4 decoration-primary/30 hover:decoration-primary;
     }
 
-    /* Variante discrète pour le footer ou les textes secondaires */
     .link-muted {
         @apply link text-text-muted hover:text-text-main hover:underline underline-offset-4;
     }
@@ -192,11 +189,11 @@
         @apply shadow-[0_0_15px_rgba(var(--color-primary),0.2)];
     }
     .nav-link {
-        @apply flex items-center gap-3 px-4 py-3 rounded-2xl text-text-muted transition-all duration-200 hover:text-text-main hover:bg-white/5;
+        @apply flex items-center gap-3 px-4 py-3 rounded-lg  text-text-muted transition-all duration-200 hover:text-text-main hover:bg-white/5;
     }
 
     .nav-link-active {
-        @apply bg-primary text-background font-bold shadow-[0_0_20px_rgba(var(--color-primary),0.3)] hover:bg-primary hover:text-background;
+        @apply bg-primary text-text-main font-bold shadow-[0_0_20px_rgba(var(--color-primary),0.3)] hover:bg-primary;
     }
 
     ::-webkit-scrollbar {
@@ -207,5 +204,40 @@
     }
     ::-webkit-scrollbar-thumb {
         @apply bg-surface-light rounded-full;
+    }
+
+    .modal-backdrop {
+        @apply fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity;
+    }
+
+    .modal-content {
+        @apply fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%]
+               gap-4 border border-white/10 bg-surface p-6 shadow-2xl duration-200 rounded-3xl;
+    }
+
+    .input-number-no-spinners::-webkit-inner-spin-button,
+    .input-number-no-spinners::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .toast-container {
+        @apply fixed bottom-5 right-5 z-100 flex flex-col gap-3 w-full max-w-sm;
+    }
+
+    .toast-card {
+        @apply flex items-start gap-3 p-4 rounded-2xl border border-white/10 bg-surface/80 backdrop-blur-xl shadow-2xl;
+        animation: toast-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+            forwards;
+    }
+
+    @keyframes toast-in {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 }

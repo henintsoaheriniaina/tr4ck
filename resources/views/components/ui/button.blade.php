@@ -23,20 +23,24 @@
         'lg' => 'px-6 py-3 text-base',
     ];
 
-    $classes = 'btn ' . ($variants[$variant] ?? $variants['primary']) . ' ' . ($sizes[$size] ?? $sizes['md']);
+    $classes =
+        'btn flex items-center gap-2 ' .
+        ($variants[$variant] ?? $variants['primary']) .
+        ' ' .
+        ($sizes[$size] ?? $sizes['lg']);
 @endphp
 
 @if ($href)
     <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
         @if ($icon)
-            <span class="mr-2">{{ $icon }}</span>
+            <i data-feather="{{ $icon }}" class="h-5 w-5"></i>
         @endif
         {{ $slot }}
     </a>
 @else
     <button {{ $attributes->merge(['class' => $classes]) }}>
         @if ($icon)
-            <span class="mr-2">{{ $icon }}</span>
+            <i data-feather="{{ $icon }}" class="h-5 w-5"></i>
         @endif
         {{ $slot }}
     </button>

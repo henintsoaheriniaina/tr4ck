@@ -25,17 +25,17 @@
                 <nav class="flex-1 space-y-2">
                     <p class="text-text-muted mb-4 px-4 text-[10px] font-bold uppercase tracking-widest">Navigation</p>
 
-                    <x-ui.nav-link href="/dashboard" icon="grid" :active="request()->routeIs('dashboard')">
+                    <x-ui.nav-link href="{{ route('index') }}" icon="grid" :active="request()->routeIs('index')">
                         Dashboard
                     </x-ui.nav-link>
 
-                    <x-ui.nav-link href="/transactions" icon="repeat" :active="request()->routeIs('transactions')">
+                    <x-ui.nav-link href="{{ route('wallets.index') }}" icon="briefcase" :active="request()->routeIs('wallets.index')">
+                        Portefeuille
+                    </x-ui.nav-link>
+                    <x-ui.nav-link href="/transactions" icon="repeat" :active="request()->routeIs('transactions.index')">
                         Transactions
                     </x-ui.nav-link>
 
-                    <x-ui.nav-link href="/portfolio" icon="briefcase" :active="request()->routeIs('portfolio')">
-                        Portefeuille
-                    </x-ui.nav-link>
 
                     <x-ui.nav-link href="/settings" icon="settings" :active="request()->routeIs('settings')">
                         Paramètres
@@ -65,7 +65,7 @@
                 </button>
 
                 <div class="flex items-center gap-4">
-                    <div class="hidden text-right sm:block">
+                    <div class="text-right">
                         <p class="text-text-main text-sm font-bold">{{ auth()->user()->name }}</p>
                         <p class="text-text-muted text-[10px] tracking-wider">{{ auth()->user()->email }}</p>
                     </div>
@@ -75,13 +75,14 @@
             </header>
 
             {{-- main --}}
-            <main class="flex-1 overflow-y-auto px-8 py-12">
+            <main class="flex flex-1 flex-col overflow-y-auto px-8 py-12">
                 {{ $slot }}
             </main>
         </div>
     </div>
+
+    <x-ui.toaster />
     <script>
-        feather.replace();
         document.addEventListener('alpine:initialized', () => {
             feather.replace();
         });

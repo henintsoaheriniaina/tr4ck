@@ -23,8 +23,12 @@ class User extends Authenticatable
         'password',
         'image_path',
         'image_url',
+        'currency',
     ];
-
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

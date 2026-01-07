@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,4 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('index');
     })->name('index');
+    Route::resource('wallets', WalletController::class)->except(['create', 'edit']);
+
+    Route::patch('/wallets/{wallet}/status', [WalletController::class, 'updateStatus'])->name('wallets.update-status');
+
 });
