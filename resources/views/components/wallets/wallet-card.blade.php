@@ -15,13 +15,13 @@
     <div class="relative flex h-full flex-col justify-between space-y-4">
         <div class="flex items-center justify-between">
             <div class="bg-primary/10 text-primary flex h-12 w-12 items-center justify-center rounded-2xl shadow-inner">
-                <i data-feather="briefcase" class="h-6 w-6"></i>
+                <i class="fa-solid fa-wallet size-6"></i>
             </div>
 
             <x-ui.dropdown align="right">
                 <x-slot:trigger>
                     <button class="text-text-muted hover:text-primary cursor-pointer p-1 transition-colors">
-                        <i data-feather="more-horizontal" class="h-5 w-5"></i>
+                        <i class="fa-solid fa-caret-down"></i>
                     </button>
                 </x-slot:trigger>
                 <x-slot:content>
@@ -29,7 +29,7 @@
                         @class([
                             'flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors rounded-xl text-primary hover:bg-primary/5 font-semibold',
                         ])>
-                        <i data-feather="edit" class="h-4 w-4"></i>
+                        <i class="fa-solid fa-pen size-4"></i>
                         Modifier
                     </button>
                     <form action="{{ route('wallets.destroy', $wallet) }}" method="POST">
@@ -37,7 +37,7 @@
                         @method('DELETE')
                         <button
                             class="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-red-400 transition-colors hover:bg-red-500/10">
-                            <i data-feather="trash-2" class="h-4 w-4"></i>
+                            <i class="fa-solid fa-trash size-4"></i>
                             Supprimer
                         </button>
                     </form>
@@ -46,9 +46,14 @@
         </div>
         <div>
             <p class="text-text-muted mb-1 text-sm font-medium">{{ $wallet->name }}</p>
-            <h3 class="text-text-main flex items-center gap-2 text-2xl font-bold tracking-tight">
+            <h3 class="flex items-center gap-2 text-2xl font-bold tracking-tight">
+
+                <span @class([
+                    'text-danger' => $wallet->balance <= 0,
+                    'text-text-main' => $wallet->balance > 0,
+                ])>{{ number_format($wallet->balance, 2, ',', ' ') }}</span>
+
                 <span class="text-primary">{{ auth()->user()->currency ?? '$' }}</span>
-                <span>{{ number_format($wallet->balance, 2, ',', ' ') }}</span>
             </h3>
         </div>
     </div>

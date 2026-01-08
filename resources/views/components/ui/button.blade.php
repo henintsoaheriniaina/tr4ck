@@ -33,14 +33,14 @@
 @if ($href)
     <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
         @if ($icon)
-            <i data-feather="{{ $icon }}" class="h-5 w-5"></i>
+            <i class="{{ $icon }}"></i>
         @endif
         {{ $slot }}
     </a>
 @else
     <button {{ $attributes->merge(['class' => $classes]) }}>
         @if ($icon)
-            <i data-feather="{{ $icon }}" class="h-5 w-5"></i>
+            <i class="{{ $icon }}"></i>
         @endif
         {{ $slot }}
     </button>

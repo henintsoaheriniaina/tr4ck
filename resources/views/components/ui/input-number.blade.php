@@ -26,7 +26,7 @@
         {{-- Bouton Moins --}}
         <button type="button" @click="decrement()"
             class="bg-surface-light text-text-main hover:bg-primary hover:text-background absolute left-2 z-10 flex h-8 w-8 items-center justify-center rounded-lg transition-all">
-            <i data-feather="minus" class="h-4 w-4"></i>
+            <i class="fa-solid fa-minus"></i>
         </button>
 
         {{-- Input --}}
@@ -37,7 +37,7 @@
         {{-- Bouton Plus --}}
         <button type="button" @click="increment()"
             class="bg-surface-light text-text-main hover:bg-primary hover:text-background absolute right-2 z-10 flex h-8 w-8 items-center justify-center rounded-lg transition-all">
-            <i data-feather="plus" class="h-4 w-4"></i>
+            <i class="fa-solid fa-plus"></i>
         </button>
     </div>
 

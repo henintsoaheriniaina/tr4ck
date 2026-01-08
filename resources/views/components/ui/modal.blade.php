@@ -18,7 +18,7 @@
                     <h2 class="text-text-main text-xl font-bold tracking-tight">{{ $title }}</h2>
                 @endif
                 <button @click="show = false" class="text-text-muted hover:text-text-main transition-colors">
-                    <i data-feather="x" class="h-5 w-5"></i>
+                    <i class="fa-solid fa-x"></i>
                 </button>
             </div>
 

@@ -14,7 +14,7 @@ class WalletController extends Controller
      */
     public function index()
     {
-        $wallets = Auth::user()->wallets()->latest()->paginate(10);
+        $wallets = Auth::user()->wallets()->latest()->paginate(12);
         return view("pages.wallets.index", ["wallets" => $wallets]);
     }
 

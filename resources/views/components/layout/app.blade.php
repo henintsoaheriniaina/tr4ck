@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ $title ? ucfirst("Tr4ck | $title") : 'Tr4ck' }}</title>
 </head>
@@ -24,30 +26,27 @@
 
                 <nav class="flex-1 space-y-2">
                     <p class="text-text-muted mb-4 px-4 text-[10px] font-bold uppercase tracking-widest">Navigation</p>
-
-                    <x-ui.nav-link href="{{ route('index') }}" icon="grid" :active="request()->routeIs('index')">
+                    <x-ui.nav-link href="{{ route('index') }}" icon="fa-solid fa-chart-line" :active="request()->routeIs('index')">
                         Dashboard
                     </x-ui.nav-link>
-
-                    <x-ui.nav-link href="{{ route('wallets.index') }}" icon="briefcase" :active="request()->routeIs('wallets.index')">
+                    <i class=""></i>
+                    <x-ui.nav-link href="{{ route('wallets.index') }}" icon="fa-solid fa-wallet" :active="request()->routeIs('wallets.index')">
                         Portefeuille
                     </x-ui.nav-link>
-                    <x-ui.nav-link href="/transactions" icon="repeat" :active="request()->routeIs('transactions.index')">
+                    <x-ui.nav-link href="{{ route('transactions.index') }}" icon="fa-solid fa-right-left"
+                        :active="request()->routeIs('transactions.index')">
                         Transactions
                     </x-ui.nav-link>
-
-
-                    <x-ui.nav-link href="/settings" icon="settings" :active="request()->routeIs('settings')">
+                    <x-ui.nav-link href="{{ route('settings.index') }}" icon="fa-solid fa-gear" :active="request()->routeIs('settings.index')">
                         Paramètres
                     </x-ui.nav-link>
                 </nav>
-
                 <div class="mt-auto border-t border-white/5 pt-6">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit"
                             class="nav-link w-full text-red-400 hover:bg-red-500/10 hover:text-red-400">
-                            <i data-feather="log-out" class="h-5 w-5"></i>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span>Déconnexion</span>
                         </button>
                     </form>
@@ -60,10 +59,8 @@
         <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
             {{-- header --}}
             <header class="border-primary/20 flex items-center justify-between border-b px-8 py-6 lg:justify-end">
-                <button @click="mobileMenu = true" class="text-text-main p-2 lg:hidden">
-                    <i data-feather="menu"></i>
-                </button>
-
+                <x-ui.button @click="mobileMenu = true" icon="fa-solid fa-bars" variant="ghost"
+                    class="lg:hidden"></x-ui.button>
                 <div class="flex items-center gap-4">
                     <div class="text-right">
                         <p class="text-text-main text-sm font-bold">{{ auth()->user()->name }}</p>
@@ -83,11 +80,7 @@
 
     <x-ui.toaster />
     @stack('modals')
-    <script>
-        document.addEventListener('alpine:initialized', () => {
-            feather.replace();
-        });
-    </script>
+    @stack('scripts')
 </body>
 
 </html>

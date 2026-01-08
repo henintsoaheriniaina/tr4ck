@@ -123,7 +123,7 @@
     }
 
     .card {
-        @apply glass-card p-6 bg-primary/5 hover:border-primary/30 relative z-0;
+        @apply glass-card p-6 bg-primary/5 hover:border-primary/30 relative;
     }
 
     .card::before {
