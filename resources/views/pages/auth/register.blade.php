@@ -1,6 +1,6 @@
 <x-layout.guest title="Créer un compte">
     <div class="mb-8 space-y-1">
-        <p class="text-text-muted text-sm">Bienvenue sur Tr4ck!</p>
+        <p class="text-text-muted text-sm">Bienvenue sur Flux!</p>
         <h1
             class="bg-linear-to-r to-text-muted from-white bg-clip-text text-3xl font-extrabold tracking-tight text-transparent">
             Créer un compte

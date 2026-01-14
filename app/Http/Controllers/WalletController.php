@@ -15,7 +15,8 @@ class WalletController extends Controller
     public function index()
     {
         $wallets = Auth::user()->wallets()->latest()->paginate(12);
-        return view("pages.wallets.index", ["wallets" => $wallets]);
+        $trashed = Auth::user()->wallets()->onlyTrashed()->latest()->get();
+        return view("pages.wallets.index", ["wallets" => $wallets, "trashed" => $trashed]);
     }
 
     /**
@@ -99,5 +100,31 @@ class WalletController extends Controller
     {
         $wallet->delete();
         return redirect()->back()->with('success', 'Portefeuille déplacé vers la corbeille.');
+    }
+
+    public function restore(int $id)
+    {
+        $wallet = Wallet::withTrashed()->findOrFail($id);
+        $wallet->restore();
+        return redirect()->back()->with('success', 'Portefeuille restauré avec succès.');
+    }
+
+    public function restoreAll()
+    {
+        Wallet::onlyTrashed()->restore();
+        return redirect()->back()->with('success', 'Tous les portefeuilles ont été restaurés.');
+    }
+
+    public function forceDestroy(int $id)
+    {
+        $wallet = Wallet::withTrashed()->findOrFail($id);
+        $wallet->forceDelete();
+        return redirect()->back()->with('success', 'Portefeuille supprimé définitivement.');
+    }
+
+    public function clearTrash()
+    {
+        Wallet::onlyTrashed()->forceDelete();
+        return redirect()->back()->with('success', 'La corbeille a été vidée.');
     }
 }

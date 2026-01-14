@@ -18,9 +18,17 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('', action: [DashboardController::class, 'index'])->name('index');
+    Route::prefix('wallets')->name('wallets.')->group(function () {
+        Route::put('/restore-all', [WalletController::class, 'restoreAll'])->name('restoreAll');
+        Route::delete('/clear-trash', [WalletController::class, 'clearTrash'])->name('clearTrash');
+
+        Route::put('/{id}/restore', [WalletController::class, 'restore'])->name('restoreOne');
+        Route::delete('/{id}/force', [WalletController::class, 'forceDestroy'])->name('forceDestroy');
+    });
     Route::resource('wallets', WalletController::class)->except(['create', 'edit']);
+
 
     Route::prefix('transactions')->name('transactions.')->group(function () {
         Route::get('/', [TransactionController::class, 'index'])->name('index');

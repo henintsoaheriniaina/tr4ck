@@ -1,4 +1,4 @@
-@props(['title' => 'Tr4ck'])
+@props(['title' => 'Flux'])
 <!doctype html>
 <html>
 
@@ -12,7 +12,7 @@
     @else
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
-    <title class="uppercase">{{ $title ? ucfirst("Tr4ck | $title") : 'Tr4ck ' }}</title>
+    <title class="uppercase">{{ $title ? ucfirst("Flux | $title") : 'Flux ' }}</title>
 </head>
 
 <body class="max-w-screen bg-background flex min-h-screen items-center justify-center px-8 py-4 text-white">

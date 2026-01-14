@@ -20,4 +20,19 @@ class Wallet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+    protected static function booted()
+    {
+        static::deleted(function ($wallet) {
+            $wallet->transactions()->delete();
+        });
+
+        static::restoring(function ($wallet) {
+            $wallet->transactions()->restore();
+        });
+    }
 }

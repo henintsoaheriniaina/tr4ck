@@ -1,4 +1,4 @@
-@props(['title' => 'Tr4ck'])
+@props(['title' => 'Flux'])
 <!doctype html>
 <html class="bg-background">
 
@@ -9,7 +9,7 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>{{ $title ? ucfirst("Tr4ck | $title") : 'Tr4ck' }}</title>
+    <title>{{ $title ? ucfirst("Flux | $title") : 'Flux' }}</title>
 </head>
 
 <body class="text-text-main font-sans antialiased" x-data="{ mobileMenu: false }">
@@ -21,7 +21,7 @@
                     <div
                         class="bg-primary text-background flex h-8 w-8 items-center justify-center rounded-lg font-black shadow-[0_0_15px_var(--color-primary)]">
                         T</div>
-                    <span class="text-xl font-bold tracking-tighter">Tr4ck</span>
+                    <span class="text-xl font-bold tracking-tighter">Flux</span>
                 </div>
 
                 <nav class="flex-1 space-y-2">
