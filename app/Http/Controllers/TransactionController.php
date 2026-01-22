@@ -24,16 +24,7 @@ class TransactionController extends Controller
             $query->where('type', $request->type);
         }
 
-        if ($request->filled('from')) {
-            $query->whereDate('happened_at', '>=', $request->from);
-        }
-        if ($request->filled('to')) {
-            $query->whereDate('happened_at', '<=', $request->to);
-        }
-
-        // $transactions = $query->orderBy('happened_at', 'desc')->paginate(15)->withQueryString();
-
-        $transactions = Transaction::latest()->with(['wallet', 'tags'])->paginate(15)
+        $transactions = $query->latest()->with(['wallet', 'tags'])->paginate(15)
         ;
 
         $wallets = auth()->user()->wallets()->get();
